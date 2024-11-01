@@ -30,6 +30,7 @@ public class UserEntity {
     private String email;
     private String password;
 
+
     public User toUser() {
         User user = new User();
         user.setName(name);
@@ -37,6 +38,13 @@ public class UserEntity {
         user.setEmail(email);
         user.setPassword(password);
         return user;
+    }
+    public UserEntity(User user){
+        userId = user.getUserId();
+        name = user.getName();
+        surname = user.getSurname();
+        email = user.getEmail();
+        password = user.getPassword();
     }
 
 }

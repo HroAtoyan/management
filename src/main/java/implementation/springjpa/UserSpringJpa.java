@@ -17,7 +17,7 @@ import java.util.UUID;
 
 
 @Service
-public class    UserSpringJpa implements UserService {
+public class UserSpringJpa implements UserService {
 
     @Autowired
 
@@ -42,7 +42,7 @@ public class    UserSpringJpa implements UserService {
     }
 
     @Override
-    public void updateUser(UUID userId, User user) {
+    public User updateUser(UUID userId, User user) {
 
         Optional<UserEntity> userEntity;
         UserEntity existingUser;
@@ -66,7 +66,36 @@ public class    UserSpringJpa implements UserService {
             throw new UserAlreadyExistException("User already exists with given email.");
         }
 
+        User updateUser;
+        UserEntity entity = new UserEntity(user);
+        entity.setUserId(userId);
+        entity.setPassword(entity.getPassword());
+
+        try {
+            updateUser = userRepository.save(entity).toUser();
+        } catch (Exception e) {
+            throw new UserApiException("Problems during updating user");
+        }
+
+        return updateUser;
     }
+
+    @Override
+    public List<User> getUsers() {
+        List<UserEntity> userEntities;
+        try {
+            userEntities = userRepository.findAll();
+        } catch (Exception ex) {
+            throw new UserApiException("Problems occurred during getting users...");
+
+        }
+        return userEntities
+                .stream()
+                .map(UserEntity::toUser)
+                .toList();
+
+    }
+
 
     @Override
     public User getUserById(UUID userId) {

@@ -11,10 +11,7 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
-
 public class Task {
-
     private UUID id;
     private UUID creatorId;
     private UUID performerId;

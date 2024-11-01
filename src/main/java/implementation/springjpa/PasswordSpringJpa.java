@@ -14,7 +14,7 @@ import java.util.UUID;
 @Service
 public class PasswordSpringJpa implements PasswordService {
     @Autowired
-    private UserRepository userRepository;cd
+    private UserRepository userRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;

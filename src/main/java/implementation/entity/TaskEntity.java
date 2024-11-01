@@ -1,6 +1,7 @@
 package implementation.entity;
 
 
+import implementation.model.Task;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -34,6 +35,26 @@ public class TaskEntity {
 
     private void generateTaskNumber() {
         this.numberOfTask = UUID.randomUUID().hashCode();
+    }
+
+    public Task toTask() {
+        Task task = new Task();
+        task.setId(taskId);
+        task.setCreatorId(creatorId);
+        task.setPerformerId(performerId);
+        task.setTitle(title);
+        task.setDescription(description);
+        task.setNumberOfTask(numberOfTask);
+
+        return task;
+    }
+    public TaskEntity(Task task){
+        taskId = task.getId();
+        creatorId = task.getCreatorId();
+        performerId = task.getPerformerId();
+        title = task.getTitle();
+        description = task.getDescription();
+        numberOfTask = task.getNumberOfTask();
     }
 
 }

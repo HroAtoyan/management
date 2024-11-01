@@ -9,7 +9,9 @@ public interface UserService {
 
     User createUser(User user);
 
-    void updateUser(UUID userId, User user);
+    User updateUser(UUID userId, User user);
+
+    List<User> getUsers();
 
     User getUserById(UUID userId);
 
