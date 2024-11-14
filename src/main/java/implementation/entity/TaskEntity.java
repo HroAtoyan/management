@@ -1,11 +1,9 @@
 package implementation.entity;
 
 
+import implementation.enums.Status;
 import implementation.model.Task;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,18 +17,22 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Task", schema = "Management")
+@Table(name = "task", schema = "task_management")
 @Entity
 public class TaskEntity {
     @Id
     @GenericGenerator(name = "generator", strategy = "uuid2")
     @GeneratedValue(generator = "generator")
+    @Column(name = "task_id")
     private UUID taskId;
+    @Column(name = "creator_id")
     private UUID creatorId;
+    @Column(name = "performer_id")
     private UUID performerId;
     private String title;
     private String description;
-    private Enum Status;
+    private Status status;
+    @Column(name = "number_of_task")
     private int numberOfTask;
 
     private void generateTaskNumber() {

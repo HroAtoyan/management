@@ -28,18 +28,18 @@ public class TokenSpringJpa implements TokenService {
     @Override
     public String getToken(LoginRequest loginRequest) {
         String token = null;
-        try{
-            Authentication authenticate= authenticationManager
+        try {
+            Authentication authenticate = authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-            String email=authenticate.getName();
-            UserEntity userEntity=userRepository.getByEmail(email);
+            String email = authenticate.getName();
+            UserEntity userEntity = userRepository.getByEmail(email);
             userEntity.setPassword("");
-            token=jwtUtil.createToken(userEntity);
-        } catch (BadCredentialsException e){
+            token = jwtUtil.createToken(userEntity);
+        } catch (BadCredentialsException e) {
             throw new UserBadRequestException("Invalid username or password");
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new UserApiException("Problem occurred while creating token");
         }
-        return  token;
+        return token;
     }
 }

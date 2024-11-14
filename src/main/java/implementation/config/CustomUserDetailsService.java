@@ -1,7 +1,5 @@
 package implementation.config;
 
-
-
 import implementation.entity.UserEntity;
 import implementation.repository.UserRepository;
 import lombok.SneakyThrows;

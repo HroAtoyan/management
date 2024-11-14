@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/auth")
 @Hidden
-
 public class AuthenticationController {
 
     @Autowired

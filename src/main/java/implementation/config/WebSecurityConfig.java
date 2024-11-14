@@ -40,7 +40,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
         security.csrf().disable()
                 .authorizeRequests()
-                .requestMatchers("/api/*/*/openapi/**", "/out/token/")
+                .requestMatchers("/api/*/*/openapi/**", "/auth/token", "/user/create", "/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

@@ -16,7 +16,7 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "User", schema = "Management")
+@Table(name = "user", schema = "task_management")
 public class UserEntity {
     @Id
     @Column(name = "user_id")
@@ -33,6 +33,7 @@ public class UserEntity {
 
     public User toUser() {
         User user = new User();
+        user.setUserId(userId);
         user.setName(name);
         user.setSurname(surname);
         user.setEmail(email);

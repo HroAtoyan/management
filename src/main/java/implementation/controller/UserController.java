@@ -21,11 +21,34 @@ import java.util.UUID;
 
 @Slf4j
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/v1")
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+
+    @Operation(summary = "Get user with given ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User found", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))
+            }),
+            @ApiResponse(responseCode = "404", description = "User not found", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionResponse.class))
+            }),
+
+            @ApiResponse(responseCode = "500", description = "Error occurred while creating user", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionResponse.class))
+            }),
+    })
+    @GetMapping("/{id}")
+    public @ResponseBody User getById(@PathVariable UUID id) {
+        log.info("Received request to get user");
+        User user = userService.getUserById(id);
+        log.info("User found");
+        return user;
+
+    }
 
     @Operation(summary = "Get list of users.")
     @ApiResponses(value = {
@@ -36,14 +59,12 @@ public class UserController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionResponse.class))
             }),
     })
-
-    @GetMapping()
+    @GetMapping("/user")
     public @ResponseBody List<User> getUsers() {
         log.info("Received request to get list of users");
         List<User> users = userService.getUsers();
         log.info("Users found");
         return users;
-
     }
 
     @Operation(summary = "Create user with specified parameters.")
@@ -57,13 +78,10 @@ public class UserController {
             @ApiResponse(responseCode = "409", description = "User already exists", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionResponse.class))
             }),
-            @ApiResponse(responseCode = "500", description = "Error occured while creating user", content = {
+            @ApiResponse(responseCode = "500", description = "Error occurred while creating user", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionResponse.class))
             }),
     })
-
-
-
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody User create(@RequestBody @Valid User user) {

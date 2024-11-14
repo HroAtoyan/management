@@ -37,6 +37,7 @@ public class UserSpringJpa implements UserService {
         if (userEntity != null) {
             throw new UserAlreadyExistException("User already exists with given email");
         }
+        userEntity = userRepository.save(new UserEntity(user));
 
         return userEntity.toUser();
     }
@@ -100,13 +101,11 @@ public class UserSpringJpa implements UserService {
     @Override
     public User getUserById(UUID userId) {
 
-        Optional<UserEntity> userEntity;
-
-            userEntity = userRepository.findById(userId);
-            if (userEntity.isPresent()) {
-                throw new UserNotFoundException("User not found with given ID");
-            }
-            return userEntity.get().toUser();
+        Optional<UserEntity> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isEmpty()) {
+            throw new UserNotFoundException("User not found with given ID");
+        }
+        return optionalUser.get().toUser();
     }
 
     @Override
