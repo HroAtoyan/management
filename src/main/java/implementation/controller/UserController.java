@@ -21,7 +21,7 @@ import java.util.UUID;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     @Autowired
@@ -59,7 +59,7 @@ public class UserController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionResponse.class))
             }),
     })
-    @GetMapping("/user")
+    @GetMapping
     public @ResponseBody List<User> getUsers() {
         log.info("Received request to get list of users");
         List<User> users = userService.getUsers();
@@ -82,7 +82,7 @@ public class UserController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionResponse.class))
             }),
     })
-    @PostMapping("/create")
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody User create(@RequestBody @Valid User user) {
         log.info("Received request to create user");

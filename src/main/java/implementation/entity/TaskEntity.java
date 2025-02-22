@@ -35,16 +35,13 @@ public class TaskEntity {
     @Column(name = "number_of_task")
     private int numberOfTask;
 
-    private void generateTaskNumber() {
-        this.numberOfTask = UUID.randomUUID().hashCode();
-    }
-
     public Task toTask() {
         Task task = new Task();
         task.setId(taskId);
         task.setCreatorId(creatorId);
         task.setPerformerId(performerId);
         task.setTitle(title);
+        task.setStatus(status);
         task.setDescription(description);
         task.setNumberOfTask(numberOfTask);
 
@@ -55,8 +52,10 @@ public class TaskEntity {
         creatorId = task.getCreatorId();
         performerId = task.getPerformerId();
         title = task.getTitle();
+        status = task.getStatus();
         description = task.getDescription();
         numberOfTask = task.getNumberOfTask();
+
     }
 
 }

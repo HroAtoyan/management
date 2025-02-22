@@ -1,18 +1,15 @@
 package implementation.springjpa;
 
 import implementation.entity.TaskEntity;
-
-
+import implementation.enums.Status;
 import implementation.exceptions.taskexceptions.TaskApiException;
 import implementation.exceptions.taskexceptions.TaskBadRequestException;
 import implementation.exceptions.taskexceptions.TaskNotFoundException;
 import implementation.model.Task;
 import implementation.repository.TaskRepository;
+import implementation.repository.UserRepository;
 import implementation.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
-
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,27 +21,31 @@ public class TaskSpringJpa implements TaskService {
 
     @Autowired
     private TaskRepository taskRepository;
-
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
-    public Task createTask(Task task) {
-
-        TaskEntity taskEntity = new TaskEntity();
-
-        if (task.getTitle() != null) {
-            throw new TaskApiException("The title must be empty");
-        }
+    public Task createTask(Task task, String email) {
         if (task.getId() != null) {
-            throw new TaskApiException("The id must be null");
+            throw new TaskBadRequestException("The id must be null");
         }
-        if (task.getDescription() != null) {
-            throw new TaskApiException("The description must be empty");
-        }
-        if (task.getStatus() != null) {
-            throw new TaskApiException("The status must be empty");
-        }
-
-        return taskEntity.toTask();
+       try {
+           task.setCreatorId(userRepository.findByEmail(email).getUserId());
+           int count = taskRepository.getLastCode();
+           task.setNumberOfTask(count + 1);
+           task.setStatus(Status.INITIATED);
+           if (task.getPerformerId() != null) {
+               UUID id = task.getPerformerId();
+               userRepository.findById(id).orElseThrow(() ->
+                       new TaskNotFoundException("The performer id is not found"));
+           }
+           return taskRepository.save(new TaskEntity(task)).toTask();
+       } catch (Exception e) {
+           if (e instanceof TaskNotFoundException) {
+               throw (TaskNotFoundException) e;
+           }
+           throw new TaskApiException("Problem during creating task");
+       }
     }
 
     @Override
@@ -62,10 +63,13 @@ public class TaskSpringJpa implements TaskService {
         if (taskEntity.isEmpty()) {
             throw new TaskNotFoundException("Task not found with given ID");
         }
+
+
+
+
         Task updateTask;
         TaskEntity entity = new TaskEntity(task);
         entity.setTaskId(taskID);
-
         try {
             updateTask = taskRepository.save(entity).toTask();
         } catch (Exception e) {
@@ -103,7 +107,6 @@ public class TaskSpringJpa implements TaskService {
     }
 
 
-
     @Override
     public void deleteTask(UUID id) {
 
@@ -116,4 +119,23 @@ public class TaskSpringJpa implements TaskService {
         }
     }
 
+    @Override
+    public Task updatePerformer(UUID performerId, Task task) {
+        Optional<TaskEntity> taskEntity;
+        try {
+            taskEntity = taskRepository.findById(performerId);
+        } catch (Exception e) {
+            throw new TaskApiException("Problem during updating performer user");
+        }
+        Task updatePerformer;
+        TaskEntity entity = new TaskEntity(task);
+        entity.setTaskId(performerId);
+        try {
+            updatePerformer = taskRepository.save(entity).toTask();
+        } catch (Exception e) {
+            throw new TaskApiException("Problems during updating performer user");
+        }
+        return updatePerformer;
+
     }
+}

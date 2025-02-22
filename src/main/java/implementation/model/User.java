@@ -12,9 +12,20 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class User {
+
+    
+
+    public int sum(int a, int b) {
+        return a + b;
+    }
+
+    public void f() {
+
+    }
+
+
+
     private static final String NAME_EMPTY_MSG = "Name of the user cannot be null or empty";
     private static final String NAME_REGEX = "[A-Z][a-z]+";
     private static final String NAME_REGEX_MSG = "Name of user can contain letters and hyphen";
@@ -50,6 +61,7 @@ public class User {
     private String email;
     @NotEmpty(message = PASSWORD_EMPTY_MSG)
     @Pattern(regexp = PASSWORD_REGEX)
+    @Schema(description = "Password of user", defaultValue = "123456789Pq")
     private String password;
 
 

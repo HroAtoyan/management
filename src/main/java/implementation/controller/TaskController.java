@@ -15,12 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.UUID;
 
 @Slf4j
 @RestController
-@RequestMapping("/task")
+@RequestMapping("/api/v1/tasks")
 public class TaskController {
 
     @Autowired
@@ -35,7 +36,6 @@ public class TaskController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionResponse.class))
             }),
     })
-
     @GetMapping()
     public @ResponseBody List<Task> getTask() {
         log.info("Received request to get list of tasks");
@@ -56,18 +56,16 @@ public class TaskController {
             @ApiResponse(responseCode = "409", description = "Task already exists", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionResponse.class))
             }),
-            @ApiResponse(responseCode = "500", description = "Error occured while creating task", content = {
+            @ApiResponse(responseCode = "500", description = "Error occurred while creating task", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ExceptionResponse.class))
             }),
     })
-
-
-
-    @PostMapping("/create")
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public @ResponseBody Task create(@RequestBody @Valid Task task) {
+    public @ResponseBody Task create(@RequestBody @Valid Task task, Principal principal) {
+        String email = principal.getName();
         log.info("Received request to create task");
-        Task newTask = taskService.createTask(task);
+        Task newTask = taskService.createTask(task, email);
         log.info("Task created successfully");
         return newTask;
 
@@ -77,8 +75,16 @@ public class TaskController {
     public @ResponseBody Task update(@PathVariable UUID id, @RequestBody @Valid Task task) {
         log.info("Received request to update task with ID: {}", id);
         Task updatedTask = taskService. updateTask(id, task);
-        log.info("User updated successfully");
+        log.info("Task updated successfully");
         return updatedTask;
+    }
+
+    @PutMapping("/{id}/performer")
+    public @ResponseBody Task updatePerformer(@PathVariable UUID id, @RequestBody @Valid Task task) {
+        log.info("Received request to update performer user with ID: {}", id);
+        Task updatedPerformer = taskService. updatePerformer(id, task);
+        log.info("performer user updated successfully");
+        return updatedPerformer;
     }
 
     @Operation(summary = "Delete task with specified ID.")

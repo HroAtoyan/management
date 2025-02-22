@@ -5,10 +5,12 @@ import implementation.exceptions.userexceptions.UserAlreadyExistException;
 import implementation.exceptions.userexceptions.UserApiException;
 import implementation.exceptions.userexceptions.UserBadRequestException;
 import implementation.exceptions.userexceptions.UserNotFoundException;
+import implementation.model.Task;
 import implementation.model.User;
 import implementation.repository.UserRepository;
 import implementation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +22,10 @@ import java.util.UUID;
 public class UserSpringJpa implements UserService {
 
     @Autowired
-
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public User createUser(User user) {
@@ -37,6 +41,7 @@ public class UserSpringJpa implements UserService {
         if (userEntity != null) {
             throw new UserAlreadyExistException("User already exists with given email");
         }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userEntity = userRepository.save(new UserEntity(user));
 
         return userEntity.toUser();
