@@ -157,15 +157,23 @@ public class Test {
         int h = 2;
         if (x + h == y && y + h == z && z + h == w) {
             System.out.println("Task 37. " + true);
+        } else if (x + h == y && y + h == w && w + h == z) {
+            System.out.println("Task 37. " + true);
         } else if (x + h == z && z + h == y && y + h == w) {
             System.out.println("Task 37. " + true);
         } else if (x + h == w && w + h == y && y + h == z) {
             System.out.println("Task 37. " + true);
         } else if (x + h == z && z + h == w && w + h == y) {
             System.out.println("Task 37. " + true);
+        } else if (x + h == w && w + h == z && z + h == y) {
+            System.out.println("Task 37. " + true);
         } else if (y + h == x && x + h == z && z + h == w) {
             System.out.println("Task 37. " + true);
+        } else if (y + h == x && x + h == w && w + h == z) {
+            System.out.println("Task 37. " + true);
         } else if (y + h == z && z + h == x && x + h == w) {
+            System.out.println("Task 37. " + true);
+        } else if (y + h == z && z + h == w && w + h == x) {
             System.out.println("Task 37. " + true);
         } else if (y + h == w && w + h == x && x + h == z) {
             System.out.println("Task 37. " + true);
@@ -179,6 +187,10 @@ public class Test {
             System.out.println("Task 37. " + true);
         } else if (z + h == x && x + h == y && y + h == w) {
             System.out.println("Task 37. " + true);
+        } else if (z + h == x && x + h == w && w + h == y) {
+            System.out.println("Task 37. " + true);
+        } else if (z + h == w && w + h == x && x + h == y) {
+            System.out.println("Task 37. " + true);
         } else if (w + h == z && z + h == y && y + h == x) {
             System.out.println("Task 37. " + true);
         } else if (w + h == z && z + h == x && y + h == y) {
@@ -187,7 +199,11 @@ public class Test {
             System.out.println("Task 37. " + true);
         } else if (w + h == x && x + h == y && y + h == z) {
             System.out.println("Task 37. " + true);
-        }else {
+        } else if (w + h == y && y + h == x && x + h == z) {
+            System.out.println("Task 37. " + true);
+        } else if (w + h == y && y + h == z && z + h == x) {
+            System.out.println("Task 37. " + true);
+        } else {
             System.out.println("Task 37. " + false);
         }
 
@@ -195,15 +211,23 @@ public class Test {
         // Task 38
         if (x * h == y && y * h == z && z * h == w) {
             System.out.println("Task 38. " + true);
+        } else if (x * h == y && y * h == w && w * h == z) {
+            System.out.println("Task 38. " + true);
         } else if (x * h == z && z * h == y && y * h == w) {
             System.out.println("Task 38. " + true);
         } else if (x * h == w && w * h == y && y * h == z) {
             System.out.println("Task 38. " + true);
         } else if (x * h == z && z * h == w && w * h == y) {
             System.out.println("Task 38. " + true);
+        } else if (x * h == w && w * h == z && z * h == y) {
+            System.out.println("Task 38. " + true);
         } else if (y * h == x && x * h == z && z * h == w) {
             System.out.println("Task 38. " + true);
+        } else if (y * h == x && x * h == w && w * h == z) {
+            System.out.println("Task 38. " + true);
         } else if (y * h == z && z * h == x && x * h == w) {
+            System.out.println("Task 38. " + true);
+        } else if (y * h == z && z * h == w && w * h == x) {
             System.out.println("Task 38. " + true);
         } else if (y * h == w && w * h == x && x * h == z) {
             System.out.println("Task 38. " + true);
@@ -217,15 +241,23 @@ public class Test {
             System.out.println("Task 38. " + true);
         } else if (z * h == x && x * h == y && y * h == w) {
             System.out.println("Task 38. " + true);
+        } else if (z * h == x && x * h == w && w * h == y) {
+            System.out.println("Task 38. " + true);
+        } else if (z * h == w && w * h == x && x * h == y) {
+            System.out.println("Task 38. " + true);
         } else if (w * h == z && z * h == y && y * h == x) {
-            System.out.println("Task 38 " + true);
+            System.out.println("Task 38. " + true);
         } else if (w * h == z && z * h == x && y * h == y) {
             System.out.println("Task 38. " + true);
         } else if (w * h == x && x * h == z && z * h == y) {
             System.out.println("Task 38. " + true);
         } else if (w * h == x && x * h == y && y * h == z) {
             System.out.println("Task 38. " + true);
-        }else {
+        } else if (w * h == y && y * h == x && x * h == z) {
+            System.out.println("Task 38. " + true);
+        } else if (w * h == y && y * h == z && z * h == x) {
+            System.out.println("Task 38. " + true);
+        } else {
             System.out.println("Task 38. " + false);
         }
 
