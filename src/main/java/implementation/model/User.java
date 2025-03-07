@@ -14,16 +14,6 @@ import java.util.UUID;
 @Setter
 public class User {
 
-    
-
-    public int sum(int a, int b) {
-        return a + b;
-    }
-
-    public void f() {
-
-    }
-
 
 
     private static final String NAME_EMPTY_MSG = "Name of the user cannot be null or empty";
