@@ -1,12 +1,12 @@
 import java.util.*;
 
-// 211, 214, 15, 16, 19, 20, 27, 28, 29, 32, 33, 34, 36, 38, 40, 41, 44, 48, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60
+// 211, 214, 15, 16, 19, 20(X2),(21 - 27), 28, 29, 32, 33, 34, 36, 38, 40, 41, 44, 48, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60
+// 220 - 227, 231, 241 - 243, 249, 250,
 public class Test {
     public static void main(String[] args) {
 
 
-//211
-        int[] array = {10, 19, 3, 7, 3};
+        int[] array = {13, -19, 2, 7, 6};
 
         int max = array[0];
         int min = array[0];
@@ -14,54 +14,77 @@ public class Test {
         int total = 1;
         int count = 0;
         int sum = 0;
+
+//220
+        int count1 = 0;
         for (int i = 0; i < array.length; i++) {
             if (array[i] > 0) {
-                sum += array[i];
                 count++;
+            } else if (array[i] < 0) {
+                count1++;
             }
         }
-        System.out.println("Task 211. " + sum / count);
+        System.out.println(count + ", " + count1);
 
 
- //214
+
+
+//221
+        for (int i = 1; i < 11; i++) {
+            sum += i;
+        }
+        System.out.println(sum);
+
+
+
+//222
+        for (int i = -5; i < 23; i++) {
+            total += i;
+        }
+        System.out.println(total);
+
+
+
+
+
+//223
+        for (int i = -3; i < 21; i++) {
+             count++;
+        }
+        System.out.println(count);
+
+
+
+
+
+//224
         for (int i = 0; i < array.length; i++) {
-            if (array[i] < 0) {
-                sum += array[i];
-                count++;
+            if (Math.abs(array[i]) < k) {
+                sum += Math.pow(array[i], 3);
             }
         }
-        System.out.println("Task 214. " + sum / count);
+        System.out.println(sum);
 
- //215
-        for (int i = 0; i < array.length; i++) {
-            if (i % 2 == 0){
-                sum += array[i];
-            }
-        }
-        System.out.println("Task 215, " + sum);
- //216
 
+
+//225
         for (int i = 0; i < array.length; i++) {
-            if (i % 2 == 0){
+            if (Math.abs(array[i]) < k) {
                 total *= array[i];
             }
         }
-        System.out.println("Task 216, " + total);
-//219
-        for (int i = 0; i < array.length; i++) {
-            if (i % k == 0) {
-                count++;
-            }
-        }
-        System.out.println("Task 219. " + count);
+        System.out.println(total);
 
-//220
+
+
+//226
         for (int i = 0; i < array.length; i++) {
-            if (array[i] != 0) {
+            if (Math.abs(array[i]) < k) {
                 count++;
             }
         }
-        System.out.println("Task 220. " + count);
+        System.out.println(count);
+
 
 
 //227
@@ -74,238 +97,66 @@ public class Test {
         System.out.println("Task 227. " + sum / count);
 
 
-//228
-        for (int i = 0; i < array.length; i++) {
-            if (i % k == 0) {
-                sum += array[i];
-            }
-        }
-        System.out.println("Task 228. " + sum);
 
-
-
-//229
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] - i > 0) {
-                total *= array[i];
-            }
-        }
-        System.out.println("Task 229. " + total);
-
-
-
-//232
+//231
         for (int i = 0; i < array.length; i++) {
             if (array[i] % 2 == 0) {
-                count++;
+                sum += Math.pow(array[i], 2);
             }
         }
-        System.out.println("Task 232. " + count);
+        System.out.println(sum);
 
 
 
-//233
+//241
         for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 == 0) {
+            if (array[i] % k == 0) {
                 sum += array[i];
+            }
+        }
+        System.out.println(sum);
+
+
+
+
+//242
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % k == 0) {
                 total *= array[i];
             }
         }
-        System.out.print("Task 233. " + "Sum = " + sum);
-        System.out.println(", Total = " + total);
+        System.out.println(total);
 
 
 
-//234
+//243
         for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 != 0) {
-                sum += array[i];
+            if (array[i] % k == 0) {
                 count++;
             }
         }
-        System.out.println("Task 234. " + sum / count);
+        System.out.println(count);
 
 
 
 
-//236
+//249
         for (int i = 0; i < array.length; i++) {
-            if (array[i] % 2 != 0) {
-                total *= array[i];
-                count++;
-            }
-        }
-        System.out.print("Task 236. " + "Total = " + total);
-        System.out.println(", Count = " + count);
-
-
-
-
-//238
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] % 3 == 0) {
-                sum += array[i];
-                count++;
-            }
-        }
-        System.out.println("Task 238. " + sum / count);
-
-
-
-//240
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] % 7 == 0) {
-                count++;
-            }
-        }
-        System.out.println("Task 240. " + count);
-
-
-
-
-//244
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] % 5 == 2) {
-                total *= array[i];
-            }
-        }
-        System.out.println("Task 244. " + total);
-
-
-
-
-//248
-        for (int i = 0; i < array.length; i++) {
-            if ((array[i] + i) * (array[i] + i) % k == 0) {
+            if (Math.pow(array[i] + i, 2) % k == 0) {
                 sum += array[i];
             }
         }
-        System.out.println("Task 248. " + sum);
+        System.out.println(sum);
 
 
 
 
-//251
-
+//250
         for (int i = 0; i < array.length; i++) {
-            if (array[i] > max) {
-                max = array[i];
+            if ((array[i] * i) % 3 == 2) {
+                total *= Math.pow(array[i], 2);
             }
         }
-        System.out.println("Task 251. " + max);
-
-
-
-//252
-
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] < min) {
-                min = array[i];
-            }
-        }
-        System.out.println("Task 252. " + min);
-
-
-
-
-//253
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > max) {
-                max = array[i];
-            }else if (array[i] < min) {
-                min = array[i];
-            }
-        }
-        System.out.print( "Task 253. ");
-        System.out.println(max + min);
-
-
-
-
-
-//254
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > max) {
-                max = array[i];
-            }else if (array[i] < min) {
-                min = array[i];
-            }
-        }
-        System.out.print( "Task 254. ");
-        System.out.println(max * min);
-
-
-
-
-//255
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > max) {
-                max = array[i];
-                count = i;
-            }
-        }
-        System.out.print("Task 255. ");
-        System.out.println(max + count);
-
-
-
-//256
-                for (int i = 0; i < array.length; i++) {
-            if (array[i] < min) {
-                min = array[i];
-                count = i;
-            }
-        }
-        System.out.print("Task 256. ");
-        System.out.println(min + count);
-
-
-
-
-//257
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > max) {
-                max = array[i];
-                count++;
-            }
-        }
-        System.out.println("Task 257. " + count);
-
-
-
-
-//258
-        for (int i = array.length - 1 ; i >= 0; i--) {
-            if (array[i] > max) {
-                max = array[i];
-                count = i;
-            }
-        }
-        System.out.println("Task 258. " + count);
-
-
-
-
-//259
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] < min) {
-                min = array[i];
-                count = i;
-            }
-        }
-        System.out.println("Task 259. " + count);
-
-
-
-
-//260
-        for (int i = array.length - 1; i >= 0; i--) {
-            if (array[i] < min) {
-                min = array[i];
-                count = i;
-            }
-        }
-        System.out.println("Task 260. " + count);
-
+        System.out.println(total);
     }
 }
