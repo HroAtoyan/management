@@ -1,7 +1,6 @@
 import java.util.*;
 
-// 211, 214, 15, 16, 19, 20(X2),(21 - 27), 28, 29, 32, 33, 34, 36, 38, 40, 41, 44, 48, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60
-// 220 - 227, 231, 241 - 243, 249, 250,
+//291 - 310. 5 hat obyekti nkaragrutyun
 public class Test {
     public static void main(String[] args) {
 
@@ -15,148 +14,191 @@ public class Test {
         int count = 0;
         int sum = 0;
 
-//220
-        int count1 = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > 0) {
-                count++;
-            } else if (array[i] < 0) {
-                count1++;
+//291
+        for (int x : array) {
+            if (x > 0) {
+                System.out.print(x + ", ");
             }
         }
-        System.out.println(count + ", " + count1);
 
 
-
-
-//221
-        for (int i = 1; i < 11; i++) {
-            sum += i;
-        }
-        System.out.println(sum);
-
-
-
-//222
-        for (int i = -5; i < 23; i++) {
-            total += i;
-        }
-        System.out.println(total);
-
-
-
-
-
-//223
-        for (int i = -3; i < 21; i++) {
-             count++;
-        }
-        System.out.println(count);
-
-
-
-
-
-//224
-        for (int i = 0; i < array.length; i++) {
-            if (Math.abs(array[i]) < k) {
-                sum += Math.pow(array[i], 3);
+//292
+        for (int x : array) {
+            if (x % 7 == 0) {
+                System.out.print(x + ", ");
             }
         }
-        System.out.println(sum);
 
 
 
-//225
-        for (int i = 0; i < array.length; i++) {
-            if (Math.abs(array[i]) < k) {
-                total *= array[i];
+//293
+        for (int i = 3; i < 23; i++) {
+            if (i >= 3 && i <= 23) {
+                System.out.print(i + ", ");
             }
         }
-        System.out.println(total);
 
 
 
-//226
+//294
         for (int i = 0; i < array.length; i++) {
-            if (Math.abs(array[i]) < k) {
-                count++;
+            if (i % 2 != 0) {
+                System.out.print(array[i] + ", ");
             }
         }
-        System.out.println(count);
 
 
 
-//227
+//295
+        for (int i = 0; i < array.length; i+=2) {
+            System.out.print(array[i] + ", ");
+        }
+
+
+
+//296
         for (int i = 0; i < array.length; i++) {
-            if (i % k == 0) {
-                sum += array[i];
-                count++;
+            if (array[i] % k == 2) {
+                System.out.println(array[i] + ", ");
             }
         }
-        System.out.println("Task 227. " + sum / count);
 
 
 
-//231
+//297
+        for (int i = 0; i < array.length; i++) {
+            if (Math.abs(array[i]) > k) {
+                System.out.println(array[i] + ", ");
+            }
+        }
+
+
+
+//298
         for (int i = 0; i < array.length; i++) {
             if (array[i] % 2 == 0) {
-                sum += Math.pow(array[i], 2);
+                System.out.println(array[i] + ", ");
             }
         }
-        System.out.println(sum);
 
 
 
-//241
+//299
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % 2 != 0) {
+                System.out.println(array[i] + ", ");
+            }
+        }
+
+
+
+//300
+        for (int x : array) {
+            if (Math.pow(x, 2) < k) {
+                System.out.println(x + ", ");
+            }
+        }
+
+
+
+//301
+        for (int j : array) {
+            if (j % k == 0 && j > 9 && j < 100) {
+                System.out.println(j + ", ");
+            }
+        }
+
+
+
+//302
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % 5 == 2 && array[i] > 99 && array[i] < 1000){
+                System.out.println(array[i] + ", ");
+            }
+        }
+
+
+
+//303
         for (int i = 0; i < array.length; i++) {
             if (array[i] % k == 0) {
-                sum += array[i];
+                System.out.println(array[i] + ", ");
             }
         }
-        System.out.println(sum);
 
 
 
-
-//242
+//304
         for (int i = 0; i < array.length; i++) {
-            if (array[i] % k == 0) {
-                total *= array[i];
+            if (array[i] % k == 2) {
+                System.out.println(array[i] + ", ");
             }
         }
-        System.out.println(total);
 
 
 
-//243
+// 305
+        for (int j : array) {
+            if (j % 3 == 0 && j % 5 == 0 && j > 999 && j < 10000) {
+                System.out.println(j + ", ");
+            }
+        }
+
+
+//306
         for (int i = 0; i < array.length; i++) {
-            if (array[i] % k == 0) {
-                count++;
+            int a = array[i] % 10;
+            int b = array[i] / 10;
+            if (a + b > 5 && array[i] > 9 && array[i] < 100) {
+                System.out.println(array[i] + ", ");
             }
         }
-        System.out.println(count);
 
 
-
-
-//249
+//307
         for (int i = 0; i < array.length; i++) {
-            if (Math.pow(array[i] + i, 2) % k == 0) {
-                sum += array[i];
+            int a = array[i] % 10;
+            int b = (array[i] % 100) / 10;
+            int c = array[i] / 100;
+            if (a + b + c == 9 && array[i] > 99 && array[i] < 1000) {
+                System.out.println(array[i] + ", ");
             }
         }
-        System.out.println(sum);
 
 
 
 
-//250
+//308
         for (int i = 0; i < array.length; i++) {
-            if ((array[i] * i) % 3 == 2) {
-                total *= Math.pow(array[i], 2);
+            if (array[i] % k == 0 && array[i] > 9 && array[i] < 1000) {
+                System.out.println(array[i] + ", ");
             }
         }
-        System.out.println(total);
+
+
+
+//309
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % 2 != 0 && array[i] % 3 != 0) {
+                System.out.println(array[i] + ", ");
+            }
+        }
+
+
+
+//310
+        for (int i = 0; i < array.length; i++) {
+            int a = array[i] % 10;
+            int b = (array[i] % 100) / 10;
+            if (a == b) {
+                System.out.println(array[i] + ", ");
+            }
+        }
+
+
+
+//311
+
+
     }
 }
